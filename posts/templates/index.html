@@ -1,5 +1,16 @@
 <html>
 	<body>
 		<h1>{{ title }}</h1>
+		<hr>
+		{{ instance }}
+		{# object_list #}
+		{% for object in object_list %}
+			{{ object.title }}<br>
+			{{ object.content }}<br>
+			{{ object.updated }}<br>
+			{{ object.timestamp }}<br>
+			{{ object.id }}<br>
+			<hr>
+		{% endfor %}
 	</body>
 </html>

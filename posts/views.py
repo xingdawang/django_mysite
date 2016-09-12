@@ -1,24 +1,25 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
+
+from .models import Post
 
 def posts_create(request):
 	return HttpResponse('hello world');
 
 def posts_detail(request):	#retrieve
+	instance = get_object_or_404(Post, id=1)
 	context = {
-		'title': 'Detail'
+		'title': 'Detail',
+		'instance': instance,
 	}
-	return render(request, 'index.html', context)
+	return render(request, 'detail.html', context)
 
 def posts_list(request):	#list items
-	if request.user.is_authenticated():
-		context = {
-			'title': 'User is authenticated'
-		}
-	else:
-		context = {
-			'title': 'User is not authenticated'
-		}
+	queryset = Post.objects.all()
+	context = {
+		'object_list': queryset,
+		'title': 'User is not authenticated'
+	}
 	return render(request, 'index.html', context)
 
 def posts_update(request):
