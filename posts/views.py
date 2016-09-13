@@ -32,7 +32,7 @@ def posts_list(request):	#list items
 		'object_list': queryset,
 		'title': 'User is not authenticated'
 	}
-	return render(request, 'index.html', context)
+	return render(request, 'base.html', context)
 
 def posts_update(request, id=None):
 	instance = get_object_or_404(Post, id=id)

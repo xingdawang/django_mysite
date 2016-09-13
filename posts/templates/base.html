@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title> {% block title %}Django 1.10{% endblock %}</title>
+	</head>
+	<body>
+		<div class='messages'>
+			{% include 'message.html' %}
+		</li>
+		<div class='container'>
+		<h1>{{ title }}</h1>
+			{% block content %}
+				<hr>
+				{{ instance }}
+				{# object_list #}
+				{% for object in object_list %}
+					<a href="/posts/{{ object.id }}/">{{ object.title }}</a><hr>
+					{{ object.content }}<br>
+					{{ object.updated }}<br>
+					{{ object.timestamp }}<br>
+					{{ object.id }}<br>
+					<hr>
+				{% endfor %}
+			{% endblock %}
+		</div>
+	</body>
+</html>
