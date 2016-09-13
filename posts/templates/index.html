@@ -5,7 +5,7 @@
 		{{ instance }}
 		{# object_list #}
 		{% for object in object_list %}
-			{{ object.title }}<br>
+			<a href="/posts/{{ object.id }}/">{{ object.title }}</a><hr>
 			{{ object.content }}<br>
 			{{ object.updated }}<br>
 			{{ object.timestamp }}<br>

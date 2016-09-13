@@ -2,12 +2,22 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 
 from .models import Post
+from .forms import PostForm
 
 def posts_create(request):
-	return HttpResponse('hello world');
+	form = PostForm(request.POST or None)
+	if form.is_valid():
+		instance = form.save(commit=False)
+		instance.save()
+	# if request.method == 'POST':
+	# 	print request.POST
+	context = {
+		'form': form
+	}
+	return render(request, 'post_form.html', context);
 
-def posts_detail(request):	#retrieve
-	instance = get_object_or_404(Post, id=1)
+def posts_detail(request, id=id):	#retrieve
+	instance = get_object_or_404(Post, id=id)
 	context = {
 		'title': 'Detail',
 		'instance': instance,
